@@ -2,15 +2,19 @@
   "name": "my-app",
   "version": "0.1.0",
   "description": "",
-  "author": {"name": "tttoh","email": "tttoh88@gmail.com"},
+  "author": {
+    "name": "tttoh",
+    "email": "tttoh88@gmail.com"
+  },
   "homepage": "https://tttoh.github.io/my-app",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
-    "deploy": "gh-pages -d src"
+    "deploy": "gh-pages -d build"
   },
   "license": "MIT",
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
