@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
-import NavBar from "./component/NavBar";
-import PasswordStrengthMeter from "./component/PasswordStrengthMeter";
+import NavBar from "./components/NavBar";
+import { Route, Switch } from 'react-router-dom';
 
+import {
+  About, Password, Home, Login, Dropdown1
+} from './screens'
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      password: '',
-    }
-  }
-
   render() {
-    const { password } = this.state;
-
     return (
-      <div className="App">
+      <div className="container">
         <NavBar/>
-        <p>This is my testing page.</p>
-        <p>Do not key in any sensitive information here.</p>
-        <div className="meter">
-          <input autoComplete="off" type="password" onChange={e => this.setState({ password: e.target.value })} />
-          <PasswordStrengthMeter password={password} />
-        </div>
+        <Switch>
+          <Route path="/" exact component={Home}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/password" component={Password}/>
+          <Route path="/about" component={About}/>
+          <Route path="/dropdown1" component={Dropdown1}/>
+          <Route 
+            render={ props => {
+              if(props.location.pathname === "/500") {
+                return (
+                  <h1>500 internal server error :(</h1>
+                ); 
+              }
+            }}
+          />
+          <Route 
+            render={() => <h1>default - 404 not found :(</h1> } 
+          />
+        </Switch>
       </div>
     );
   }
