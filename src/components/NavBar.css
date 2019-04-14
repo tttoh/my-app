@@ -1,0 +1,8 @@
+/* 
+.navbar-dark .navbar-nav .show > .nav-link,
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .hover > .nav-link,
+.navbar-dark .navbar-nav .focus > .nav-link {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+} */

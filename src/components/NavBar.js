@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NavLink from './NavLink';
 import NavDropdown from './NavDropdown';
+import './NavBar.css';
 
+const styles = {
+    clearInput: {
+        marginLeft: "-40px",
+        zIndex: "100"
+    }
+}
 class NavBar extends Component {
     constructor(props) {
         super(props);
@@ -18,31 +25,35 @@ class NavBar extends Component {
         }));
     }
     
+    clearInput = event => {
+        event.preventDefault();
+    }
+
     render() {
         var { collapsed } = this.state;
         
         return (
-            <nav className="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+            <nav className="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
                 <div className="container-fluid">
-                    <div className="navbar-header">
-                        <Link className="navbar-brand" to="/">
-                            tttoh.com
-                        </Link>
-                        <button
-                            className="navbar-toggler"
-                            data-toggle="collapse" 
-                            data-target="#navbarResponsive"
-                            onClick={this.toggleNavbar}
-                            type='button'
-                            >
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-                
-                    <div className={`${collapsed ? "collapse" : ""} navbar-collapse`} id="navbarResponsive">
+                    <Link className="navbar-left" to="/">
+                        {/* <img src="/images/logo-dark.png" height="30px"/> */}
+                    </Link>
+                    <Link className="navbar-brand" to="/">
+                        <img src="/images/logo-dark.png" height="30px"/>
+                    </Link>
+                    <button
+                        className="navbar-toggler"
+                        data-toggle="collapse" 
+                        data-target="#navbarResponsive"
+                        onClick={this.toggleNavbar}
+                        type='button'
+                        >
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className={`${collapsed ? "collapse" : ""} navbar-collapse justify-content-between`} id="navbarResponsive">
                         <ul className="navbar-nav mr-auto">
-                            <NavLink to="/">Home</NavLink>
-                            <NavLink to="/login">Login</NavLink>
+                            <NavLink to="/landing">Welcome</NavLink>
+                            <NavLink to="/home">Home</NavLink>
                             <NavLink to="/password">Password</NavLink>
                             <NavLink to="/about">About</NavLink>
                             <NavDropdown title="Dropdown">
@@ -56,12 +67,30 @@ class NavBar extends Component {
                                 <Link className="nav-link disabled" to="/500">Disabled</Link>
                             </li>
                         </ul>
+                        {/* <form className="d-flex" onSubmit={this.handleSubmit}> */}
+                        <form className="form-inline ml-auto mr-3" onSubmit={this.handleSubmit}>
+                            <div className="input-group">
+                                <input className="form-control" type="search" placeholder="Search"/>
+                                <div className="input-group-append">
+                                <button className="btn bg-transparent" style={styles.clearInput} onClick={this.clearInput}>
+                                    <span className="fa fa-times">
+                                        <span className="sr-only">Clear</span>
+                                    </span>
+                                </button>
+                                </div>
+                                <div className="input-group-append">
+                                    <button type="submit" className="btn btn-secondary">
+                                        <span className="fa fa-search">
+                                            <span className="sr-only">Search</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <ul className="navbar-nav ml-auto">
+                            <NavLink to="/login">Login</NavLink>
+                        </ul>
                     </div>
-                    
-                    <form className="form-inline" onSubmit={this.handleSubmit}>
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search"/>
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 </div>
             </nav>
         );

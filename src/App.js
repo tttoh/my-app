@@ -3,15 +3,17 @@ import NavBar from "./components/NavBar";
 import { Route, Switch } from 'react-router-dom';
 
 import {
-  About, Password, Home, Login, Dropdown1
+  About, Password, Home, Login, Dropdown1, Landing
 } from './screens'
 class App extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid px-0">
         <NavBar/>
         <Switch>
-          <Route path="/" exact component={Home}/>
+          <Route path="/" exact component={Landing}/>
+          <Route path="/landing" component={Landing}/>
+          <Route path="/home" component={Home}/>
           <Route path="/login" component={Login}/>
           <Route path="/password" component={Password}/>
           <Route path="/about" component={About}/>

@@ -6,11 +6,15 @@
     "name": "tttoh",
     "email": "tttoh88@gmail.com"
   },
-  "homepage": "https://tttoh.github.io/my-app",
+  "homepage": "https://www.tttoh.com",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
-    "predeploy": "rmdir /q /s dist && parcel build index.html --public-url https://tttoh.github.io/my-app",
+    "build": "rmdir /q /s dist && parcel build index.html",
+    "start-nocache": "parcel index.html --no-cache",
+    "start-nominify": "parcel index.html --no-minify",
+    "build-output-dir": "parcel build index.html -d build/output ",
+    "predeploy-gh-pages": "rmdir /q /s dist && parcel build index.html --public-url https://tttoh.github.io/my-app",
+    "predeploy": "rmdir /q /s dist && parcel build index.html --public-url https://www.tttoh.com",
     "deploy": "gh-pages -d dist"
   },
   "license": "MIT",
@@ -22,6 +26,7 @@
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^16.8.6",
+    "react-loadable": "^5.5.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "zxcvbn": "^4.4.2"
@@ -30,7 +35,8 @@
     "@babel/core": "^7.2.2",
     "babel-preset-nano-react-app": "^0.1.0",
     "parcel-bundler": "^1.11.0",
-    "parcel-plugin-static-files-copy": "^2.0.0"
+    "parcel-plugin-static-files-copy": "^2.0.0",
+    "sass": "^1.18.0"
   },
   "babel": {
     "presets": [
@@ -52,7 +58,10 @@
     ]
   },
   "staticFiles": {
-    "staticPath": "assets",
+    "staticPath": [
+      "assets",
+      "public"
+    ],
     "watcherGlob": "**"
   }
 }
